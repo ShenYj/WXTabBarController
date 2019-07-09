@@ -47,9 +47,11 @@
     
     if (!self.initialized) {
         [self.tabBarButtons enumerateObjectsUsingBlock:^(UIView *tabBarButton, NSUInteger idx, BOOL *stop) {
+            
             UIImageView *tabBarImageView = tabBarButton.subviews[0];
             
             UIImageView *imageView = [[UIImageView alloc] init];
+            imageView.contentMode = UIViewContentModeCenter;
             [tabBarButton insertSubview:imageView atIndex:0];
 
             imageView.image = self.backingViewControllers[idx].tabBarItem.selectedImage;
@@ -64,24 +66,24 @@
                                                                                  metrics:@{ @"height": @(-CGRectGetHeight(tabBarImageView.frame)) }
                                                                                    views:NSDictionaryOfVariableBindings(tabBarImageView, imageView)]];
             
-            UILabel *tabBarLabel = tabBarButton.subviews[2];
-            
-            UILabel *label = [[UILabel alloc] init];
-            [tabBarButton insertSubview:label atIndex:1];
-
-            label.textColor = self.tabBar.tintColor;
-            label.font = tabBarLabel.font;
-            label.text = self.backingViewControllers[idx].tabBarItem.title;
-            label.translatesAutoresizingMaskIntoConstraints = NO;
-            
-            [tabBarButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[tabBarLabel]-width-[label(==tabBarLabel)]"
-                                                                                 options:0
-                                                                                 metrics:@{ @"width": @(-CGRectGetWidth(tabBarLabel.frame)) }
-                                                                                   views:NSDictionaryOfVariableBindings(tabBarLabel, label)]];
-            [tabBarButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[tabBarLabel]-height-[label(==tabBarLabel)]"
-                                                                                 options:0
-                                                                                 metrics:@{ @"height": @(-CGRectGetHeight(tabBarLabel.frame)) }
-                                                                                   views:NSDictionaryOfVariableBindings(tabBarLabel, label)]];
+//            UILabel *tabBarLabel = tabBarButton.subviews[2];
+//
+//            UILabel *label = [[UILabel alloc] init];
+//            [tabBarButton insertSubview:label atIndex:1];
+//
+//            label.textColor = self.tabBar.tintColor;
+//            label.font = tabBarLabel.font;
+//            label.text = self.backingViewControllers[idx].tabBarItem.title;
+//            label.translatesAutoresizingMaskIntoConstraints = NO;
+//
+//            [tabBarButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[tabBarLabel]-width-[label(==tabBarLabel)]"
+//                                                                                 options:0
+//                                                                                 metrics:@{ @"width": @(-CGRectGetWidth(tabBarLabel.frame)) }
+//                                                                                   views:NSDictionaryOfVariableBindings(tabBarLabel, label)]];
+//            [tabBarButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[tabBarLabel]-height-[label(==tabBarLabel)]"
+//                                                                                 options:0
+//                                                                                 metrics:@{ @"height": @(-CGRectGetHeight(tabBarLabel.frame)) }
+//                                                                                   views:NSDictionaryOfVariableBindings(tabBarLabel, label)]];
         }];
         
         self.selectedIndex = 0;
@@ -208,13 +210,13 @@
     if (highlighted) {
         tabBarButton.subviews[0].alpha = 1 - deltaAlpha;
         tabBarButton.subviews[1].alpha = 1 - deltaAlpha;
-        tabBarButton.subviews[2].alpha = 0 + deltaAlpha;
-        tabBarButton.subviews[3].alpha = 0 + deltaAlpha;
+//        tabBarButton.subviews[2].alpha = 0 + deltaAlpha;
+//        tabBarButton.subviews[3].alpha = 0 + deltaAlpha;
     } else {
         tabBarButton.subviews[0].alpha = 0 + deltaAlpha;
         tabBarButton.subviews[1].alpha = 0 + deltaAlpha;
-        tabBarButton.subviews[2].alpha = 1 - deltaAlpha;
-        tabBarButton.subviews[3].alpha = 1 - deltaAlpha;
+//        tabBarButton.subviews[2].alpha = 1 - deltaAlpha;
+//        tabBarButton.subviews[3].alpha = 1 - deltaAlpha;
     }
 }
 
